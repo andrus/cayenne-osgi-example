@@ -19,5 +19,11 @@
 			<version>3.2.M2-SNAPSHOT</version>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.framework</artifactId>
+			<version>4.2.1</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 </project>
