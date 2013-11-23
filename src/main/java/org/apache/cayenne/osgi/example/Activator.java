@@ -20,6 +20,8 @@ package org.apache.cayenne.osgi.example;
 
 import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.configuration.server.ServerRuntime;
+import org.apache.cayenne.map.EntityResolver;
+import org.apache.cayenne.map.ObjEntity;
 import org.apache.cayenne.osgi.example.persistent.Entity1;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
@@ -32,7 +34,26 @@ public class Activator implements BundleActivator {
     public void start(BundleContext context) throws Exception {
         System.out.println("Starting Cayenne OSGi example");
 
-        this.cayenneRuntime = new ServerRuntime("cayenne-osgi-example.xml");
+        ClassLoader oldCL = Thread.currentThread().getContextClassLoader();
+        try {
+            Thread.currentThread().setContextClassLoader(Activator.class.getClassLoader());
+            this.cayenneRuntime = new ServerRuntime("cayenne-osgi-example.xml");
+
+            // warm up ServerRuntime for class loading to occur under the
+            // current context
+            EntityResolver entityResolver = cayenneRuntime.getChannel().getEntityResolver();
+            for (ObjEntity e : entityResolver.getObjEntities()) {
+
+                // it is not enough to just call 'getObjectClass()' on
+                // ClassDescriptor - there's an optimization that prevents full
+                // descriptor resolving... so calling some other method...
+                entityResolver.getClassDescriptor(e.getName()).getProperty("__dummy__");
+                entityResolver.getCallbackRegistry();
+                System.out.println("Loaded persistent class " + e.getClassName());
+            }
+        } finally {
+            Thread.currentThread().setContextClassLoader(oldCL);
+        }
 
         // Cayenne is up by this point, we can run some operations...
         testStartup();
