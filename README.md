@@ -28,6 +28,12 @@ Install 2 Cayenne bundles:
     install file:/Users/cayenne/work/cayenne/cayenne-di/target/cayenne-di-3.2.M2-SNAPSHOT.jar
     install file:/Users/cayenne/work/cayenne/cayenne-server/target/cayenne-server-3.2.M2-SNAPSHOT.jar
 
+Running the Example
+-------------------
+
+Install the bundle
+
+    install  file:/Users/cayenne/work/cayenne-osgi-example/target/cayenne-osgi-example-1.0-SNAPSHOT.jar
 
 
 
