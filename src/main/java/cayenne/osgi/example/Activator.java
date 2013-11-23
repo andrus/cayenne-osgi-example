@@ -16,15 +16,19 @@
  *  specific language governing permissions and limitations
  *  under the License.
  ****************************************************************/
-package org.apache.cayenne.osgi.example;
+package cayenne.osgi.example;
 
 import org.apache.cayenne.ObjectContext;
+import org.apache.cayenne.configuration.osgi.OsgiModule;
 import org.apache.cayenne.configuration.server.ServerRuntime;
+import org.apache.cayenne.di.Module;
 import org.apache.cayenne.map.EntityResolver;
 import org.apache.cayenne.map.ObjEntity;
-import org.apache.cayenne.osgi.example.persistent.Entity1;
+import org.apache.cayenne.query.SelectQuery;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+
+import cayenne.osgi.example.persistent.Entity1;
 
 public class Activator implements BundleActivator {
 
@@ -34,28 +38,10 @@ public class Activator implements BundleActivator {
     public void start(BundleContext context) throws Exception {
         System.out.println("Starting Cayenne OSGi example");
 
-        ClassLoader oldCL = Thread.currentThread().getContextClassLoader();
-        try {
-            Thread.currentThread().setContextClassLoader(Activator.class.getClassLoader());
-            this.cayenneRuntime = new ServerRuntime("cayenne-osgi-example.xml");
+        this.cayenneRuntime = loadCayenneRuntime("cayenne-osgi-example.xml");
 
-            // warm up ServerRuntime for class loading to occur under the
-            // current context
-            EntityResolver entityResolver = cayenneRuntime.getChannel().getEntityResolver();
-            for (ObjEntity e : entityResolver.getObjEntities()) {
-
-                // it is not enough to just call 'getObjectClass()' on
-                // ClassDescriptor - there's an optimization that prevents full
-                // descriptor resolving... so calling some other method...
-                entityResolver.getClassDescriptor(e.getName()).getProperty("__dummy__");
-                entityResolver.getCallbackRegistry();
-                System.out.println("Loaded persistent class " + e.getClassName());
-            }
-        } finally {
-            Thread.currentThread().setContextClassLoader(oldCL);
-        }
-
-        // Cayenne is up by this point, we can run some operations...
+        // Cayenne is up by this point, we can run some operations and check
+        // that they do not fail
         testStartup();
     }
 
@@ -64,11 +50,39 @@ public class Activator implements BundleActivator {
         System.out.println("Stopping Cayenne OSGi example");
     }
 
+    private ServerRuntime loadCayenneRuntime(String name) {
+        ClassLoader oldCL = Thread.currentThread().getContextClassLoader();
+        try {
+            Thread.currentThread().setContextClassLoader(Activator.class.getClassLoader());
+            Module osgiExtentionsModule = new OsgiModule();
+            ServerRuntime cayenneRuntime = new ServerRuntime("cayenne-osgi-example.xml", osgiExtentionsModule);
+
+            // warm up ServerRuntime for class loading to occur under the
+            // current thread context
+            EntityResolver entityResolver = cayenneRuntime.getChannel().getEntityResolver();
+            for (ObjEntity e : entityResolver.getObjEntities()) {
+
+                // it is not enough to just call 'getObjectClass()' on
+                // ClassDescriptor - there's an optimization that prevents full
+                // descriptor resolving... so calling some other method...
+                entityResolver.getClassDescriptor(e.getName()).getProperty("__dummy__");
+                entityResolver.getCallbackRegistry();
+            }
+
+            return cayenneRuntime;
+        } finally {
+            Thread.currentThread().setContextClassLoader(oldCL);
+        }
+    }
+
     private void testStartup() {
 
         ObjectContext context = cayenneRuntime.newContext();
         Entity1 e1 = context.newObject(Entity1.class);
         e1.setName("E1_" + System.currentTimeMillis());
         context.commitChanges();
+
+        SelectQuery<Entity1> query = SelectQuery.query(Entity1.class);
+        context.select(query);
     }
 }

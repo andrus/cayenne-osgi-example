@@ -1,4 +1,4 @@
-package org.apache.cayenne.osgi.example.persistent;
+package cayenne.osgi.example.persistent;
 
 import org.apache.cayenne.osgi.example.persistent.auto._OsgiMap;
 

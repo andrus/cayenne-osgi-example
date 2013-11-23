@@ -3,7 +3,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.apache.cayenne</groupId>
+	<groupId>cayenne</groupId>
 	<artifactId>cayenne-osgi-example</artifactId>
 	<version>1.0-SNAPSHOT</version>
 
@@ -77,7 +77,7 @@
 						</goals>
 						<configuration>
 							<instructions>
-								<Bundle-Activator>org.apache.cayenne.osgi.example.Activator</Bundle-Activator>
+								<Bundle-Activator>cayenne.osgi.example.Activator</Bundle-Activator>
 							</instructions>
 						</configuration>
 					</execution>
