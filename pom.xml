@@ -24,7 +24,7 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -75,6 +75,11 @@
 						<goals>
 							<goal>manifest</goal>
 						</goals>
+						<configuration>
+							<instructions>
+								<Bundle-Activator>org.apache.cayenne.tutorial.osgi.Activator</Bundle-Activator>
+							</instructions>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
