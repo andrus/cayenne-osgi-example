@@ -1,7 +1,7 @@
 cayenne-osgi-example
 ====================
 
-A simple OSGi bundle that shows how to use Apache Cayenne under OSGi.
+A simple OSGi bundle that shows how to use [Apache Cayenne](http://cayenne.apache.org/) under OSGi.
 
 _Note that this is still work in progress, until [CAY-1882](https://issues.apache.org/jira/browse/CAY-1882) is fixed._
 
@@ -9,7 +9,7 @@ Prerequisites
 -------------
 
 * Cayenne 3.2M2 or newer. 
-* An OSGi container. (All testing for this example was done with Apache Felix 4.2.1)
+* An OSGi container. (All testing for this example was done with [Apache Felix](http://felix.apache.org/)  4.2.1)
 
 Configuring OSGi Container
 --------------------------
