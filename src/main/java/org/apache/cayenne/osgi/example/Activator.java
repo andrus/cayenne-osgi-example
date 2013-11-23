@@ -16,7 +16,7 @@
  *  specific language governing permissions and limitations
  *  under the License.
  ****************************************************************/
-package org.apache.cayenne.tutorial.osgi;
+package org.apache.cayenne.osgi.example;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
