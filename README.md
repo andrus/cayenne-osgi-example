@@ -22,6 +22,7 @@ Install third-party dependencies, which are somewhat different from normal Cayen
     install file:/Users/cayenne/.m2/repository/org/slf4j/slf4j-simple/1.7.5/slf4j-simple-1.7.5.jar
     install file:/Users/cayenne/.m2/repository//org/apache/servicemix/bundles/org.apache.servicemix.bundles.velocity/1.7_6/org.apache.servicemix.bundles.velocity-1.7_6.jar
     install file:/Users/cayenne/.m2/repository/commons-lang/commons-lang/2.4/commons-lang-2.4.jar
+    install file:/Users/cayenne/.m2/repository/org/apache/servicemix/bundles/org.apache.servicemix.bundles.derby/10.10.1.1_1/org.apache.servicemix.bundles.derby-10.10.1.1_1.jar
 
 Install 2 Cayenne bundles:
 
