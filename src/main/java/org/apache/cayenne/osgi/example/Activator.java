@@ -18,16 +18,36 @@
  ****************************************************************/
 package org.apache.cayenne.osgi.example;
 
+import org.apache.cayenne.ObjectContext;
+import org.apache.cayenne.configuration.server.ServerRuntime;
+import org.apache.cayenne.osgi.example.persistent.Entity1;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
 public class Activator implements BundleActivator {
 
+    private ServerRuntime cayenneRuntime;
+
+    @Override
     public void start(BundleContext context) throws Exception {
-        System.out.println("Starting Cayenne OSGi tutorial");
+        System.out.println("Starting Cayenne OSGi example");
+
+        this.cayenneRuntime = new ServerRuntime("cayenne-osgi-example.xml");
+
+        // Cayenne is up by this point, we can run some operations...
+        testStartup();
     }
 
+    @Override
     public void stop(BundleContext context) throws Exception {
-        System.out.println("Stopping Cayenne OSGi tutorial");
+        System.out.println("Stopping Cayenne OSGi example");
+    }
+
+    private void testStartup() {
+
+        ObjectContext context = cayenneRuntime.newContext();
+        Entity1 e1 = context.newObject(Entity1.class);
+        e1.setName("E1_" + System.currentTimeMillis());
+        context.commitChanges();
     }
 }
