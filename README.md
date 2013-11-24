@@ -42,28 +42,28 @@ Running the Example
 Check that everything is in place:
 
     g! lb
-        START LEVEL 1
-        ID|State      |Level|Name
+    START LEVEL 1
+       ID|State      |Level|Name
         0|Active     |    0|System Bundle (4.2.1)
         1|Active     |    1|Apache Felix Bundle Repository (1.6.6)
         2|Active     |    1|Apache Felix Gogo Command (0.12.0)
         3|Active     |    1|Apache Felix Gogo Runtime (0.10.0)
         4|Active     |    1|Apache Felix Gogo Shell (0.10.0)
-        5|Resolved   |    1|Commons Collections (3.2.1)
-        6|Resolved   |    1|jcl-over-slf4j (1.7.5)
-        7|Resolved   |    1|slf4j-api (1.7.5)
-        8|Resolved   |    1|slf4j-simple (1.7.5)
-        9|Resolved   |    1|Apache ServiceMix :: Bundles :: velocity (1.7.0.6)
-       10|Resolved   |    1|Commons Lang (2.4.0)
-       15|Resolved   |    1|Cayenne Dependency Injection Container (3.2.0.M2-SNAPSHOT)
-       29|Resolved   |    1|H2 Database Engine (1.2.144)
-       30|Active     |    1|OSGi Cayenne Demo (1.0.0.SNAPSHOT)
-       32|Resolved   |    1|Cayenne Server (3.2.0.M2-SNAPSHOT)
+       33|Installed  |    1|Commons Collections (3.2.1)
+       34|Installed  |    1|jcl-over-slf4j (1.7.5)
+       35|Installed  |    1|slf4j-api (1.7.5)
+       36|Installed  |    1|slf4j-simple (1.7.5)
+       37|Installed  |    1|Apache ServiceMix :: Bundles :: velocity (1.7.0.6)
+       38|Installed  |    1|Commons Lang (2.4.0)
+       39|Installed  |    1|Cayenne Dependency Injection Container (3.2.0.M2-SNAPSHOT)
+       40|Installed  |    1|Cayenne Server (3.2.0.M2-SNAPSHOT)
+       41|Installed  |    1|H2 Database Engine (1.2.144)
+       42|Installed  |    1|OSGi Cayenne Demo (1.0.0.SNAPSHOT)
 
 
 Start the demo app bundle
 
-    g! start 30
+    g! start 42
     Starting Cayenne OSGi example
     [Gogo shell] INFO org.apache.cayenne.configuration.XMLDataChannelDescriptorLoader - Loading XML configuration resource from bundle://30.0:1/cayenne-osgi-example.xml
     [Gogo shell] INFO org.apache.cayenne.configuration.XMLDataChannelDescriptorLoader - Loading XML DataMap resource from bundle://30.0:1/osgi-map.map.xml
@@ -94,7 +94,12 @@ Start the demo app bundle
     [Gogo shell] INFO org.apache.cayenne.log.CommonsJdbcEventLogger - SELECT t0.name, t0.id FROM entity1 t0
     [Gogo shell] INFO org.apache.cayenne.log.CommonsJdbcEventLogger - === returned 1 row. - took 6 ms.
     [Gogo shell] INFO org.apache.cayenne.log.CommonsJdbcEventLogger - +++ transaction committed.
-g! 
+    g! 
+
+Stop demo:
+
+    g! stop 42
+    Stopping Cayenne OSGi example
 
     
 
