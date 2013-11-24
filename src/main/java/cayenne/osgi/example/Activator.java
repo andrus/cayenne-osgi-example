@@ -23,7 +23,7 @@ import org.apache.cayenne.configuration.osgi.OsgiModuleBuilder;
 import org.apache.cayenne.configuration.server.ServerRuntime;
 import org.apache.cayenne.di.Module;
 import org.apache.cayenne.query.SelectQuery;
-import org.apache.derby.jdbc.EmbeddedDriver;
+import org.h2.Driver;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
@@ -55,7 +55,7 @@ public class Activator implements BundleActivator {
     }
 
     private ServerRuntime loadCayenneRuntime(String name) {
-        Module osgiModule = OsgiModuleBuilder.forProject(Activator.class).withDriver(EmbeddedDriver.class).module();
+        Module osgiModule = OsgiModuleBuilder.forProject(Activator.class).withDriver(Driver.class).module();
         return new ServerRuntime("cayenne-osgi-example.xml", osgiModule);
     }
 
