@@ -55,6 +55,10 @@ public class Activator implements BundleActivator {
     }
 
     private ServerRuntime loadCayenneRuntime(String name) {
+
+        // TODO: registering Driver like that is probably too naive... We
+        // probably need a full support for OSGI DataSourceFactory in Cayenne
+        // instead. See e.g.: http://blog.osgi.org/2013/07/thanks-h2.html
         Module osgiModule = OsgiModuleBuilder.forProject(Activator.class).withDriver(Driver.class).module();
         return new ServerRuntime("cayenne-osgi-example.xml", osgiModule);
     }
