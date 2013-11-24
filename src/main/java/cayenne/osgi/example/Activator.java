@@ -22,8 +22,6 @@ import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.configuration.osgi.OsgiModule;
 import org.apache.cayenne.configuration.server.ServerRuntime;
 import org.apache.cayenne.di.Module;
-import org.apache.cayenne.map.EntityResolver;
-import org.apache.cayenne.map.ObjEntity;
 import org.apache.cayenne.query.SelectQuery;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
@@ -48,31 +46,16 @@ public class Activator implements BundleActivator {
     @Override
     public void stop(BundleContext context) throws Exception {
         System.out.println("Stopping Cayenne OSGi example");
+
+        // make sure we call shutdown and don't leave Cayenne threads running
+        // behind
+        cayenneRuntime.shutdown();
+        cayenneRuntime = null;
     }
 
     private ServerRuntime loadCayenneRuntime(String name) {
-        ClassLoader oldCL = Thread.currentThread().getContextClassLoader();
-        try {
-            Thread.currentThread().setContextClassLoader(Activator.class.getClassLoader());
-            Module osgiExtentionsModule = new OsgiModule();
-            ServerRuntime cayenneRuntime = new ServerRuntime("cayenne-osgi-example.xml", osgiExtentionsModule);
-
-            // warm up ServerRuntime for class loading to occur under the
-            // current thread context
-            EntityResolver entityResolver = cayenneRuntime.getChannel().getEntityResolver();
-            for (ObjEntity e : entityResolver.getObjEntities()) {
-
-                // it is not enough to just call 'getObjectClass()' on
-                // ClassDescriptor - there's an optimization that prevents full
-                // descriptor resolving... so calling some other method...
-                entityResolver.getClassDescriptor(e.getName()).getProperty("__dummy__");
-                entityResolver.getCallbackRegistry();
-            }
-
-            return cayenneRuntime;
-        } finally {
-            Thread.currentThread().setContextClassLoader(oldCL);
-        }
+        Module osgiModule = OsgiModule.forProject(Activator.class);
+        return new ServerRuntime("cayenne-osgi-example.xml", osgiModule);
     }
 
     private void testStartup() {
