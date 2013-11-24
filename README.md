@@ -30,9 +30,9 @@ OSGi-friendly versions of third-party dependencies needed by Cayenne:
     install file:/Users/cayenne/work/cayenne/cayenne-di/target/cayenne-di-3.2.M2-SNAPSHOT.jar
     install file:/Users/cayenne/work/cayenne/cayenne-server/target/cayenne-server-3.2.M2-SNAPSHOT.jar
     
-Derby and Derby-dependent bundles used by the demo to run an in-memory DB:
+H2 bundle used by the demo to run an in-memory DB:
 
-      install file:/Users/cayenne/.m2/repository/org/apache/servicemix/bundles/org.apache.servicemix.bundles.derby/10.10.1.1_1/org.apache.servicemix.bundles.derby-10.10.1.1_1.jar
+      install file:/Users/cayenne/.m2/repository/com/h2database/h2/1.2.144/h2-1.2.144.jar
 
 Finally, the demo app bundle:
 
