@@ -1,6 +1,6 @@
 package cayenne.osgi.example.persistent;
 
-import org.apache.cayenne.osgi.example.persistent.auto._OsgiMap;
+import cayenne.osgi.example.persistent.auto._OsgiMap;
 
 public class OsgiMap extends _OsgiMap {
 

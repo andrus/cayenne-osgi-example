@@ -1,4 +1,4 @@
-package org.apache.cayenne.osgi.example.persistent.auto;
+package cayenne.osgi.example.persistent.auto;
 
 
 
