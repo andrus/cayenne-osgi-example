@@ -3,8 +3,6 @@ cayenne-osgi-example
 
 A simple OSGi bundle that shows how to use [Apache Cayenne](http://cayenne.apache.org/) under OSGi.
 
-_Note that this is still work in progress, until [CAY-1882](https://issues.apache.org/jira/browse/CAY-1882) is fixed._
-
 Prerequisites
 -------------
 
