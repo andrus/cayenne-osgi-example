@@ -6,7 +6,7 @@ A simple OSGi bundle that shows how to use [Apache Cayenne](http://cayenne.apach
 Prerequisites
 -------------
 
-* Cayenne 3.2M2 or newer. 
+* Cayenne 4.0.M2 or newer. 
 * An OSGi container. (All testing for this example was done with [Apache Felix](http://felix.apache.org/)  4.2.1)
 
 Configuring OSGi Container
