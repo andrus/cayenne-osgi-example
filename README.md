@@ -23,10 +23,10 @@ OSGi-friendly versions of third-party dependencies needed by Cayenne:
     install file:/Users/cayenne/.m2/repository//org/apache/servicemix/bundles/org.apache.servicemix.bundles.velocity/1.7_6/org.apache.servicemix.bundles.velocity-1.7_6.jar
     install file:/Users/cayenne/.m2/repository/commons-lang/commons-lang/2.4/commons-lang-2.4.jar
 
-2 Cayenne bundles (from local build, until we release 3.2.M2 officially):
+2 Cayenne bundles:
 
-    install file:/Users/cayenne/work/cayenne/cayenne-di/target/cayenne-di-3.2.M2-SNAPSHOT.jar
-    install file:/Users/cayenne/work/cayenne/cayenne-server/target/cayenne-server-3.2.M2-SNAPSHOT.jar
+    install file:/Users/cayenne/work/cayenne/cayenne-di/target/cayenne-di-4.0.M2.jar
+    install file:/Users/cayenne/work/cayenne/cayenne-server/target/cayenne-server-4.0.M2.jar
     
 H2 bundle used by the demo to run an in-memory DB:
 
@@ -55,8 +55,8 @@ Check that everything is in place:
        36|Installed  |    1|slf4j-simple (1.7.5)
        37|Installed  |    1|Apache ServiceMix :: Bundles :: velocity (1.7.0.6)
        38|Installed  |    1|Commons Lang (2.4.0)
-       39|Installed  |    1|Cayenne Dependency Injection Container (3.2.0.M2-SNAPSHOT)
-       40|Installed  |    1|Cayenne Server (3.2.0.M2-SNAPSHOT)
+       39|Installed  |    1|Cayenne Dependency Injection Container (4.0.0.M2)
+       40|Installed  |    1|Cayenne Server (4.0.0.M2-SNAPSHOT)
        41|Installed  |    1|H2 Database Engine (1.2.144)
        42|Installed  |    1|OSGi Cayenne Demo (1.0.0.SNAPSHOT)
 
